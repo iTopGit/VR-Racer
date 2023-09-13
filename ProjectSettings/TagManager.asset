@@ -10,6 +10,14 @@ TagManager:
   - NpcMovePoint
   - NSPRecorder
   - NpcRecorder
+  - PlayerCollision
+  - TriggerBox01
+  - TriggerBox02
+  - TriggerBox03
+  - TriggerBox04
+  - TriggerBox05
+  - ThirdPersonCamera
+  - distanceTrack
   layers:
   - Default
   - TransparentFX

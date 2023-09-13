@@ -6,6 +6,9 @@ using TMPro;
 
 public class CarController : MonoBehaviour
 {
+    // Distance Tracking System
+    [SerializeField] GameObject trackingController;
+
     public Stopwatch Stopwatch;
     public GameObject StartBarrier;
     private float horizontalInput, verticalInput;
@@ -62,7 +65,9 @@ public class CarController : MonoBehaviour
             else
             {
                 Stopwatch.endStopwatch();
-                StartBarrier.SetActive(false);
+                if(StartBarrier != null) { 
+                    StartBarrier.SetActive(false);
+                }
             }
         }
     }
@@ -71,7 +76,10 @@ public class CarController : MonoBehaviour
     {
         if (other.CompareTag("Line"))
         {
-            StartBarrier.SetActive(true);
+            if (StartBarrier != null)
+            {
+                StartBarrier.SetActive(true);
+            }
         }
     }
 
@@ -97,6 +105,8 @@ public class CarController : MonoBehaviour
     }
     public void breakReleased()
     {
+        // each time player has brake, Count those amount to game.
+        trackingController.GetComponent<DistanceTrackController>().brakeCheck();
         isBreaking = false;
         downTime = Time.time - downTime;
         // Debug.Log("release=" + downTime);
