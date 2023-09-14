@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// currently though if Sector value goes wrong if player drive backward
 public class DistanceTrackController : MonoBehaviour
 {
+    private bool DEBUG = true;
+
     // Brake Count.
     int brakeAmount = 0;
+
+    // map crashed.
+    int map_crashed = 0;
+
     // Crosswalk violated.
 
     // Car crashed.
@@ -56,9 +63,11 @@ public class DistanceTrackController : MonoBehaviour
         dataToExport.Add(new string[] { 
             "Time(seconds)", 
             "Distance(percent)", 
-            "Sector",
+            "Lap",
             "Speed(Km/hr)",
-            "Crash count"});
+            "Crash Count",
+            "Brake Times",
+            "Platform Crashed"});
 
         if (tracker[0] != null)
         {
@@ -88,6 +97,7 @@ public class DistanceTrackController : MonoBehaviour
     {
         // tracking will continue until player've played 2 lap or out of time.
         while (game_lap <= 2 && timer <= 60 * 8) {
+            
             /*
             to display distance from start, formula should be
             current_progression =   distanceEachTracker[curr_tracker-1] -
@@ -103,6 +113,7 @@ public class DistanceTrackController : MonoBehaviour
             } else {
                 currDistance = DistancePerLap * 2;
             }
+
             // Debug.Log(timer + " " + currDistance);
             // add player's data to List
             addData(
@@ -110,22 +121,29 @@ public class DistanceTrackController : MonoBehaviour
                 (100 * currDistance / (DistancePerLap * 2)),
                 currSector, 
                 (int)carController.currentSpeed,
-                crash_count);
+                crash_count,
+                brakeAmount,
+                map_crashed);
 
             yield return new WaitForSeconds(1.0f);
             timer++;
         }
-        if(game_lap > 2)
-        {
-            game_lap = 2;
-        }
+
+        if(game_lap > 2) { game_lap = 2; }
+        // for player ends game without reach 2 lap(already played for 8 minutes).
+        int percentageDistance = (100 * currDistance / (DistancePerLap * 2));
+        if ( percentageDistance >= 93) { percentageDistance = 100; }
+
+
         // add player's data to List
         addData(
             timer, 
-            100, 
-            game_lap = 2, 
+            percentageDistance, 
+            game_lap, 
             (int)carController.currentSpeed,
-            crash_count);
+            crash_count,
+            brakeAmount,
+            map_crashed);
 
         // After Game end, start writing .csv file.
         csvWriter.WriteToCSV(dataToExport);
@@ -143,15 +161,18 @@ public class DistanceTrackController : MonoBehaviour
         int distance, 
         int lap, 
         int currentSpeed, 
-        int crash_count
+        int crash_count,
+        int brake_count,
+        int map_count
         ) {
         dataToExport.Add(new string[] { 
-            seconds.ToString(), 
+            seconds.ToString(),
             distance.ToString() + "%", 
-            lap.ToString(), 
+            lap.ToString(),
             currentSpeed.ToString(),
-            crash_count.ToString()
-        });
+            crash_count.ToString(),
+            brake_count.ToString(),
+            map_count.ToString() });
     }
     public void moveTracker()
     {
@@ -171,13 +192,9 @@ public class DistanceTrackController : MonoBehaviour
         Debug.Log("Sector " + currSector);
     }
 
-    public void crashCounting()
-    {
-        crash_count++;
-    }
+    public void crashCounting() { crash_count++; }
 
-    public void brakeCheck()
-    {
-        brakeAmount++;
-    }
+    public void brakeCheck() { brakeAmount++; }
+
+    public void MapCrashed() { map_crashed++; }
 }
