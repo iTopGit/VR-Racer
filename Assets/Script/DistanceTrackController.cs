@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // currently though if Sector value goes wrong if player drive backward
 public class DistanceTrackController : MonoBehaviour
@@ -154,6 +155,9 @@ public class DistanceTrackController : MonoBehaviour
 
         // After Game end, start writing .csv file.
         csvWriter.WriteToCSV(dataToExport);
+
+        // end game.
+
     }
     public void enableTracking()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnNpcCar : MonoBehaviour
 {
     [SerializeField] GameObject trackController;
+    GameObject controller;
 
     public int checkpointNumber;
     private SpawnNPCCarManager spawnManager;
@@ -17,7 +18,7 @@ public class SpawnNpcCar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Debug.Log("Hello");
+        controller = GameObject.FindGameObjectWithTag("distanceTrack");
         spawnManager = gameObject.GetComponentInParent<SpawnNPCCarManager>();
         //restArea = spawnManager.GetComponentInChildren<RestArea>();
     }
@@ -61,6 +62,7 @@ public class SpawnNpcCar : MonoBehaviour
             if(isCrashed)
             {
                 isCrashed = false;
+                controller.GetComponent<DistanceTrackController>().crashCounting();
                 dollyCart.m_Speed = 0f;
                 StartCoroutine(AfterCrashed(npcCar));
             }

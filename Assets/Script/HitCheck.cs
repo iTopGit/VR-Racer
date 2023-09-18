@@ -16,7 +16,6 @@ public class HitCheck : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             checker.isCrashed = true;
-            Debug.Log("You Hit the car mother fucker");
         }
     }
 }
