@@ -22,7 +22,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Check the name of the currently active scene
+        string sceneName = currentScene.name;
+        Debug.Log("Currently active scene: " + sceneName);
     }
 
     // Update is called once per frame

@@ -85,6 +85,14 @@ namespace RockVR.Video
     public class VideoCapture : VideoCaptureBase
     {
         /// <summary>
+        /// Get or set the object name.
+        /// </summary>
+        /// <value>The object name.</value>
+        public string ObjectName
+        {
+            get { return gameObject.name; }
+        }
+        /// <summary>
         /// Get or set the current status.
         /// </summary>
         /// <value>The current status.</value>
@@ -172,9 +180,11 @@ namespace RockVR.Video
                 VideoCaptureLib_Clean(libAPI);
             }
         }
+
         /// <summary>
         /// Start capture video.
         /// </summary>
+        /// 
         public override void StartCapture()
         {
             // Check if we can start capture session.
@@ -206,7 +216,8 @@ namespace RockVR.Video
             }
             if (mode == ModeType.LOCAL)
             {
-                filePath = PathConfig.SaveFolder + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+                //Debug.Log(VideoMuxing.videoCapture);
+                filePath = PathConfig.SaveFolder + ObjectName + "_" + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
             }
             // Create a RenderTexture with desired frame size for dedicated
             // camera capture to store pixels in GPU.
@@ -728,7 +739,7 @@ namespace RockVR.Video
         /// <summary>
         /// The capture video instance.
         /// </summary>
-        private VideoCapture videoCapture;
+        public VideoCapture videoCapture;
         /// <summary>
         /// The capture audio instance.
         /// </summary>
@@ -749,7 +760,8 @@ namespace RockVR.Video
         /// </summary>
         public bool Muxing()
         {
-            filePath = PathConfig.SaveFolder + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+
+            filePath = PathConfig.SaveFolder + videoCapture.ObjectName + "_" + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
             System.IntPtr libAPI = MuxingLib_Get(
                 videoCapture.bitrate,
                 filePath,

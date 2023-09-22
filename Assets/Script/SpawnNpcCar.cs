@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SpawnNpcCar : MonoBehaviour
 {
-    [SerializeField] GameObject trackController;
-    GameObject controller;
-
     public int checkpointNumber;
     private SpawnNPCCarManager spawnManager;
     public bool isCrashed = false;
@@ -18,7 +15,7 @@ public class SpawnNpcCar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GameObject.FindGameObjectWithTag("distanceTrack");
+        // Debug.Log("Hello");
         spawnManager = gameObject.GetComponentInParent<SpawnNPCCarManager>();
         //restArea = spawnManager.GetComponentInChildren<RestArea>();
     }
@@ -41,7 +38,6 @@ public class SpawnNpcCar : MonoBehaviour
         Cinemachine.CinemachineDollyCart dollyCart = newNPCcar.GetComponentInChildren<Cinemachine.CinemachineDollyCart>();
         if (dollyCart != null)
         {
-            // Debug.Log("car is not null");
             StartCoroutine(DestroyNPCcarAtEndOfPath(dollyCart, newNPCcar));
             // test function where car could only destroy by Colliding only.
             // KeepExist(dollyCart, newNPCcar);
@@ -62,10 +58,10 @@ public class SpawnNpcCar : MonoBehaviour
             if(isCrashed)
             {
                 isCrashed = false;
-                controller.GetComponent<DistanceTrackController>().crashCounting();
                 dollyCart.m_Speed = 0f;
                 StartCoroutine(AfterCrashed(npcCar));
             }
+            // Debug.Log("Cart's position: " + dollyCart.m_Position + ", pathLength is: " + pathLength);
             yield return null;
         }
 
@@ -76,7 +72,6 @@ public class SpawnNpcCar : MonoBehaviour
 
     IEnumerator AfterCrashed(GameObject npcCar)
     {
-        trackController.GetComponent<DistanceTrackController>().crashCounting();
         yield return new WaitForSeconds(2.0f);
         Destroy(npcCar);
         Destroy(gameObject);

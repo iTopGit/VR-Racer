@@ -18,6 +18,8 @@ TagManager:
   - TriggerBox05
   - ThirdPersonCamera
   - distanceTrack
+  - Barrier
+  - Fountain
   layers:
   - Default
   - TransparentFX

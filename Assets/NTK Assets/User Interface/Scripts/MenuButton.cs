@@ -6,28 +6,19 @@ using UnityEngine.UI;
 
 public class MenuButton : MonoBehaviour
 {
-
+    private InterfaceManager IM;
     private Button button;
-    private GameManager gameManager;
-
-    private int select = -1;
 
     // Start is called before the first frame update
     void Start()
     {
+        IM = GameObject.Find("Interface Manager").GetComponent<InterfaceManager>();
         button = GetComponent<Button>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         button.onClick.AddListener(selectButton);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (false)
-        {
-            gameManager.showScore();
-        }
-    }
+    void Update() { }
 
     void selectButton()
     {
@@ -36,18 +27,19 @@ public class MenuButton : MonoBehaviour
 
         if (buttonName == "Start Button")
         {
-            gameManager.startGame();
-        } else if (buttonName == "Tutorial Button") 
+            IM.setStart();
+        } 
+        else if (buttonName == "Tutorial Button") 
         {
-            gameManager.tutorial();
-            //EventSystem.current.SetSelectedGameObject(backButton.gameObject);
-        } else if (buttonName == "Back Button")
+            IM.setTutorial();
+        } 
+        else if (buttonName == "Back Button")
         {
-            gameManager.backToTitle();
+            IM.setTitle();
         }
         else if (buttonName == "Exit Button")
         {
-            gameManager.exitGame();
+            Application.Quit();
         }
 
         

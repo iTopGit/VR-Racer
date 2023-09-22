@@ -34,6 +34,8 @@ public class CrossWalkManager : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         float carSpeed = other.GetComponent<CarController>().currentSpeed;
+
+        // ========== Spawn NPC อยู่นี่นะน้องบ่าว ========== //
         if (carSpeed < 2 && !move && (humanController != null)) 
         {
             move = true;

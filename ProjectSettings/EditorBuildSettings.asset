@@ -6,13 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main scene.unity
+    path: Assets/Scenes/Used Scenes/Main scene.unity
     guid: bbdd4df5f601faa41ba003d08d7bb5e0
   - enabled: 1
-    path: Assets/Scenes/Test scene.unity
+    path: Assets/Scenes/Unused Scenes/Test scene.unity
     guid: d7db13bdccff8c443ba9b7d39829798a
+  - enabled: 1
+    path: Assets/Scenes/Unused Scenes/Result.unity
+    guid: 439e00c54388c5b43aa981a2d4d05af6
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 914dec5572454824295c23503ee5c4a8,
+      type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 1564c07318605ed439ac36fa01a71b1a,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 36b1f2a965f45f3458378a0f87dca86a,
       type: 2}
