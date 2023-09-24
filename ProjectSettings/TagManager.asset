@@ -20,6 +20,11 @@ TagManager:
   - distanceTrack
   - Barrier
   - Fountain
+  - TriggerBox06
+  - TriggerBox07
+  - TriggerBox08
+  - TriggerBox09
+  - TriggerBox10
   layers:
   - Default
   - TransparentFX
@@ -27,7 +32,7 @@ TagManager:
   - Car
   - Water
   - UI
-  - 
+  - NPC
   - 
   - 
   - 

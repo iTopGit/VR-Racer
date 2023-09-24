@@ -6,7 +6,6 @@ public class TrafficCircle : MonoBehaviour
 {
     [SerializeField] private int circus_id = 0;
 
-    private bool isPassing = true;
     private bool allowCount = true;
     DistanceTrackController gameController;
     CarController carController;
@@ -16,18 +15,17 @@ public class TrafficCircle : MonoBehaviour
         carController = GameObject.FindGameObjectWithTag("Player").GetComponent<CarController>();
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && carController.currentSpeed == 0)
-        {
-            isPassing = false;
+        if(other.gameObject.tag == "Player" && allowCount) {
+            allowCount = false;
+            gameController.trafficCirclePassing(circus_id);
         }
     }
+
     private void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Player" && allowCount) {
-            allowCount = false;
-            if(isPassing) { gameController.trafficCirclePassing();  }
-            // gameController.trafficCircleChecking();
+        if (other.gameObject.tag == "Player") {
+            gameController.trafficCirclePassing(0);
             StartCoroutine(wait_check_count());
         }
     }
@@ -36,7 +34,6 @@ public class TrafficCircle : MonoBehaviour
     {
         yield return new WaitForSeconds(75);
         allowCount = true;
-        isPassing = true;
     }
 
 

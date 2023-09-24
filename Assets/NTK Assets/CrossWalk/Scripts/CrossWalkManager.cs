@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class CrossWalkManager : MonoBehaviour
 {
+    [SerializeField] private int objectId = 0;
     public GameObject[] humanPrefabs;
     [SerializeField] public GameObject spawnPoint;
 
+    DistanceTrackController gameTracker;
     GameObject newHuman;
     HumanController humanController;
-    bool move;
+    bool move = false;
+    bool allowCheck = true;
 
-    // Start is called before the first frame update
-    void Start()
+    float carSpeed;
+
+    private void Start()
     {
-        
+        gameTracker = GameObject.FindGameObjectWithTag("distanceTrack").GetComponent<DistanceTrackController>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     void spawnHuman()
     {
         int humanIndex = Random.Range(0, humanPrefabs.Length);
@@ -31,20 +29,40 @@ public class CrossWalkManager : MonoBehaviour
         humanController = newHuman.GetComponent<HumanController>();
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        float carSpeed = other.GetComponent<CarController>().currentSpeed;
+    void Update() { carSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<CarController>().currentSpeed; }
+    private void OnTriggerEnter(Collider other) { 
+        if (other.gameObject.tag == "Player" && allowCheck) { 
+            spawnHuman();
+            gameTracker.CrosswalkPassing(objectId);
+            allowCheck = false;
+        } 
+    }
 
-        // ========== Spawn NPC อยู่นี่นะน้องบ่าว ========== //
-        if (carSpeed < 2 && !move && (humanController != null)) 
-        {
+    private void OnTriggerStay(Collider other) {
+        if (carSpeed < 5 && !move && (humanController != null) && other.gameObject.tag == "Player") {
+            Debug.Log("On Trigger Stay.");
             move = true;
-            humanController.setSpeed(2);
+            humanController.setSpeed(4f);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            if(!move)
+            {
+                Debug.Log("On Trigger Exit.");
+                move = true;
+                humanController.setSpeed(4f);
+            }
+            gameTracker.CrosswalkPassing(0);
+            StartCoroutine(resetChecker());
+        }
+    }
+
+    IEnumerator resetChecker()
     {
-        spawnHuman();
+        yield return new WaitForSeconds(60);
+        allowCheck = true;
+        move = false;
     }
 }

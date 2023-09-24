@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SpawnNpcCar : MonoBehaviour
 {
+    GameObject controller;
+
     public int checkpointNumber;
     private SpawnNPCCarManager spawnManager;
     public bool isCrashed = false;
-    //private RestArea restArea;
 
     public Transform carPos;
     public GameObject NPCcarPrefab;  // Prefab of the NPCcar GameObject
@@ -15,9 +15,8 @@ public class SpawnNpcCar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Debug.Log("Hello");
+        controller = GameObject.FindGameObjectWithTag("distanceTrack");
         spawnManager = gameObject.GetComponentInParent<SpawnNPCCarManager>();
-        //restArea = spawnManager.GetComponentInChildren<RestArea>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,8 +38,6 @@ public class SpawnNpcCar : MonoBehaviour
         if (dollyCart != null)
         {
             StartCoroutine(DestroyNPCcarAtEndOfPath(dollyCart, newNPCcar));
-            // test function where car could only destroy by Colliding only.
-            // KeepExist(dollyCart, newNPCcar);
         }
         else
         {
@@ -54,27 +51,29 @@ public class SpawnNpcCar : MonoBehaviour
         float pathLength = dollyCart.m_Path.PathLength; // Get the length of the path
 
         while (dollyCart.m_Position < pathLength)
-        {   
-            if(isCrashed)
-            {
-                isCrashed = false;
+        {
+            if (isCrashed) {
                 dollyCart.m_Speed = 0f;
+                Debug.Log(npcCar.name);
+                isCrashed = false;
+                controller.GetComponent<DistanceTrackController>().crashCounting();
+                
                 StartCoroutine(AfterCrashed(npcCar));
             }
-            // Debug.Log("Cart's position: " + dollyCart.m_Position + ", pathLength is: " + pathLength);
-            yield return null;
+            yield return new WaitForSeconds(0);
         }
 
-        // Debug.Log("this script has disabled the loop( dollyCart's position is higher than pathLength)");
-        Destroy(npcCar);  // Destroy the NPCcar when it reaches the end of the path
-        Destroy(gameObject);
+        deleteEvent(npcCar);
     }
 
     IEnumerator AfterCrashed(GameObject npcCar)
     {
         yield return new WaitForSeconds(2.0f);
-        Destroy(npcCar);
-        Destroy(gameObject);
+        deleteEvent(npcCar);
     }
 
+    void deleteEvent(GameObject npcCar) {
+        Destroy(npcCar.gameObject);
+        Destroy(this.gameObject);
+    }
 }

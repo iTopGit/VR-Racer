@@ -4753,7 +4753,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stopwatch: {fileID: 5123271664971981880}
   StartBarrier: {fileID: 0}
-  isBreaking: 0
   currentSpeed: 0
   textSpeed: {fileID: 9142638865439797850}
   motorForce: 300

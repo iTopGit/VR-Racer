@@ -55,7 +55,6 @@ public class ScoreController : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
-            crash = other.GetComponent<HumanController>().dead;
             humanPassed();
         }
     }

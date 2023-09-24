@@ -1,2 +1,0 @@
-[LOG]: [FFmpegLib]: DEST URL: C:\Users\VR-Student\Documents/RockVR/Video/2023-09-14-13-45-08-I10AL.mp4
-[LOG]: [FFmpegLib]: Build command: "D:/Pachara_directory/VR_testrepo/Assets/StreamingAssets/RockVR/FFmpeg/Windows/ffmpeg.exe" -f rawvideo -pix_fmt rgb24 -r 30 -s 1920x1080 -i - -y -preset ultrafast -pix_fmt yuv420p -vcodec libx264 -crf 18 -vf vflip -framerate 30 -tune zerolatency "C:\Users\VR-Student\Documents/RockVR/Video/2023-09-14-13-45-08-I10AL.mp4"

@@ -6,6 +6,10 @@ using TMPro;
 
 public class CarController : MonoBehaviour
 {
+    // VR Racer
+    DistanceTrackController gameTracker;
+
+    // VR Crosswalk Oculus
     public Stopwatch Stopwatch;
     public GameObject StartBarrier;
     private float horizontalInput, verticalInput;
@@ -43,13 +47,48 @@ public class CarController : MonoBehaviour
     private float downTime = 0f;
     private bool breakActivateSound = false;
 
-    private void FixedUpdate() {
+    void Start()
+    {
+        gameTracker = GameObject.FindGameObjectWithTag("distanceTrack").GetComponent<DistanceTrackController>();
+
+        rb = GetComponent<Rigidbody>();
+        carAudio = GetComponent<AudioSource>();
+        carAudio.PlayOneShot(carStart, 1.0f);
+    }
+    
+    public void Update()
+    {
+        currentSpeed = (float)Math.Round((rb.velocity.magnitude) * 3.6f, decimalPlaces);
+        textSpeed.text = currentSpeed.ToString();
+        float holdTime = Time.time - downTime;
+        if (holdTime > 0.7f && isBreaking && breakActivateSound)
+        {
+            //Debug.Log("hold" + holdTime);
+            if (currentSpeed > 0)
+            {
+                carAudio.PlayOneShot(carBreakSoundLong, 1.0f);
+                breakActivateSound = false;
+            }
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Barrier" || collision.gameObject.tag == "Fountain")
+        {
+            gameTracker.MapCrashed();
+        }
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Line"))
@@ -62,7 +101,7 @@ public class CarController : MonoBehaviour
             else
             {
                 Stopwatch.endStopwatch();
-                StartBarrier.SetActive(false);
+                if(StartBarrier != null) { StartBarrier.SetActive(false); }
             }
         }
     }
@@ -71,7 +110,7 @@ public class CarController : MonoBehaviour
     {
         if (other.CompareTag("Line"))
         {
-            StartBarrier.SetActive(true);
+            if (StartBarrier != null) { StartBarrier.SetActive(true); }
         }
     }
 
@@ -87,6 +126,7 @@ public class CarController : MonoBehaviour
     }
     public void breakPressed()
     {
+        gameTracker.brakeChecking();
         downTime = Time.time;
         isBreaking = true;
         breakActivateSound = true;
@@ -114,18 +154,21 @@ public class CarController : MonoBehaviour
     public void resetRotation()
     {
         bool isCarFlipping = (transform.rotation.eulerAngles.x > 45 && transform.rotation.eulerAngles.x < 315) || (transform.rotation.eulerAngles.z > 45 && transform.rotation.eulerAngles.z < 315);
-        if(isCarFlipping)
+        if (isCarFlipping)
         {
             Debug.Log("reseting..");
+            gameTracker.overturnedChecking();
+
             transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             Stopwatch.addPenalty();
         }
     }
 
-    private void GetInput() {
+    private void GetInput()
+    {
         // Steering Input
         horizontalInput = Input.GetAxis("Horizontal");
-        
+
         // Acceleration Input
         if (isAccelerator && !isReversing)
             verticalInput = 1;
@@ -134,32 +177,12 @@ public class CarController : MonoBehaviour
         else
             verticalInput = 0;
     }
-    void Start()
+    
+    private void HandleMotor()
     {
-        rb = GetComponent<Rigidbody>();
-        carAudio = GetComponent<AudioSource>();
-        carAudio.PlayOneShot(carStart, 1.0f);
-    }
-    public void Update()
-    {
-        currentSpeed = (float)Math.Round((rb.velocity.magnitude)*3.6f, decimalPlaces);
-        textSpeed.text = currentSpeed.ToString();
-        float holdTime = Time.time - downTime;
-        if(holdTime > 0.7f && isBreaking && breakActivateSound)
-        {
-            //Debug.Log("hold" + holdTime);
-            if (currentSpeed > 0)
-            {
-                carAudio.PlayOneShot(carBreakSoundLong, 1.0f);
-                breakActivateSound = false;
-            }
-        }
-        
-    }
-    private void HandleMotor() {
         if (!isMaxSpeed)
         {
-            if (!isBreaking && verticalInput == 0 )
+            if (!isBreaking && verticalInput == 0)
             {
                 frontLeftWheelCollider.motorTorque = 0;
                 frontRightWheelCollider.motorTorque = 0;
@@ -173,12 +196,12 @@ public class CarController : MonoBehaviour
                     frontLeftWheelCollider.motorTorque = retardationForce;
                     frontRightWheelCollider.motorTorque = retardationForce;
                 }
-                if(currentSpeed == 0)
+                if (currentSpeed == 0)
                 {
                     triggerSlowAccelerating = false;
                     triggerSlowReversing = false;
                 }
-            } 
+            }
             else
             {
                 frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
@@ -187,7 +210,7 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            if(currentSpeed < maxSpeed)
+            if (currentSpeed < maxSpeed)
             {
                 frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
                 frontRightWheelCollider.motorTorque = verticalInput * motorForce;
@@ -203,39 +226,43 @@ public class CarController : MonoBehaviour
         ApplyBreaking();
     }
 
-    private void ApplyBreaking() {
+    private void ApplyBreaking()
+    {
         frontRightWheelCollider.brakeTorque = currentbreakForce;
         frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
     }
 
-    private void HandleSteering() {
+    private void HandleSteering()
+    {
         targetSteerAngle = maxSteerAngle * horizontalInput;
-        if(targetSteerAngle == 0)
+        if (targetSteerAngle == 0)
         {
-            currentSteerAngle = Mathf.SmoothDamp(currentSteerAngle, targetSteerAngle, ref currentSteerVelocity, steerTime/2);
+            currentSteerAngle = Mathf.SmoothDamp(currentSteerAngle, targetSteerAngle, ref currentSteerVelocity, steerTime / 2);
         }
         else
         {
             currentSteerAngle = Mathf.SmoothDamp(currentSteerAngle, targetSteerAngle, ref currentSteerVelocity, steerTime);
         }
-        
+
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
-        steeringWheel.transform.rotation = Quaternion.Euler(steeringWheel.transform.eulerAngles.x, steeringWheel.transform.eulerAngles.y, currentSteerAngle*5);
+        steeringWheel.transform.rotation = Quaternion.Euler(steeringWheel.transform.eulerAngles.x, steeringWheel.transform.eulerAngles.y, currentSteerAngle * 5);
     }
 
-    private void UpdateWheels() {
+    private void UpdateWheels()
+    {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
         UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
         UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform) {
+    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    {
         Vector3 pos;
-        Quaternion rot; 
+        Quaternion rot;
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;

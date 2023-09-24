@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Path: {fileID: 6463232588825345216}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 0
+  m_Speed: 5
   m_Position: 0
 --- !u!1 &6666527584980149464
 GameObject:
@@ -215,3 +215,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9039279052965183294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9039279052965280158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 55c24f911e087ef46a2539ed8ea29825,
+    type: 3}
+  m_PrefabInstance: {fileID: 9039279052965183294}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6847124492783375761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039279052965280158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df41673872f236c4284d0ee51acbe62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerName: TriggerBox04
+  Barrier: {fileID: 0}

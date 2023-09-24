@@ -414,6 +414,26 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9c231b3931e7c6f489e5bfd8f660ec01, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a055c51a432cc6479aca15bee798126, type: 3}
+--- !u!1 &6784746598276257003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 4a055c51a432cc6479aca15bee798126,
+    type: 3}
+  m_PrefabInstance: {fileID: 6784746598276158027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3311617588866442208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784746598276257003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df41673872f236c4284d0ee51acbe62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerName: TriggerBox05
+  Barrier: {fileID: 0}
 --- !u!4 &6784746598276286667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4a055c51a432cc6479aca15bee798126,

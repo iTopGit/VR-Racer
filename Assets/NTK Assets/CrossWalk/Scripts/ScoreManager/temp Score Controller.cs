@@ -50,7 +50,6 @@ public class tempScoreController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("NPC")) {
-            crash = other.GetComponent<HumanController>().dead;
             humanPassed();
         }
     }

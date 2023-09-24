@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 // currently though if Sector value goes wrong if player drive backward
 public class DistanceTrackController : MonoBehaviour
 {
     private bool DEBUG = true;
 
+    // For managing GUI.
+    [SerializeField] GameObject labText;
+    [SerializeField] GameObject sectorText;
+
     // Scenemanager
     GameManager gameManager;
     // passed roundabout and crosswalk checking.
-    int CrosswalkPassed = 0;
-    int trafficCirclePassed = 0;
+    int crosswalkPassed = 0;
+    int currentRoundabout = 0;
+    int currRoundaboutState = 0;
 
     // Brake Count.
     int brakeAmount = 0;
@@ -48,7 +54,6 @@ public class DistanceTrackController : MonoBehaviour
     int[] distance_each_tracker = new int[7];
 
     public int DistancePerLap = 0;
-    bool tracking = false;
     public GameObject playerMesh;
     public int currTracker = 1;
     int passedSector = 0;
@@ -59,7 +64,7 @@ public class DistanceTrackController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        updateGameUI();
 
         // player's CarController intiating
         carController = GameObject.FindGameObjectWithTag("Player").GetComponent<CarController>();
@@ -71,9 +76,9 @@ public class DistanceTrackController : MonoBehaviour
         dataToExport.Add(new string[] { 
             "Time",                 // seconds
             "Distance",             // percent 
+            "Speed",                // Km/hr
             "Lap",
             "Sector",
-            "Speed",                // Km/hr
 
             "Brake Times",          // check whole brake time.
             "Map Crashed",          // check if player is crashing with game's map or fountain.
@@ -99,11 +104,11 @@ public class DistanceTrackController : MonoBehaviour
             temp2 = tracker[i+1].transform.position;
             // this is the line where we find distance between each 2 tracker.
             distance_each_tracker[i] = (int)(temp2 - temp1).magnitude;
-            Debug.Log(distance_each_tracker[i]);
+            // Debug.Log(distance_each_tracker[i]);
             DistancePerLap += distance_each_tracker[i];
         }
-        Debug.Log("Distance per Lap is " + DistancePerLap);
-        Debug.Log("Distance of two Lap is " + (DistancePerLap * 2));
+        // Debug.Log("Distance per Lap is " + DistancePerLap);
+        // Debug.Log("Distance of two Lap is " + (DistancePerLap * 2));
 
     }
 
@@ -124,7 +129,7 @@ public class DistanceTrackController : MonoBehaviour
             }
 
             if(passedSector < 0) { passedSector++; }
-            Debug.Log(timer + " seconds, " + currDistance + " value, " + game_lap + " lap.");
+            // Debug.Log(timer + " seconds, " + currDistance + " value, " + game_lap + " lap.");
             // add player's data to List
             percentageDistance = (100 * currDistance / (DistancePerLap * 2));
             addData(
@@ -133,8 +138,6 @@ public class DistanceTrackController : MonoBehaviour
                 (int)carController.currentSpeed,
                 brakeAmount,
                 map_crashed,
-                trafficCirclePassed,
-                0,
                 overturnedTimes
                 ) ;
             yield return new WaitForSeconds(1.0f);
@@ -142,13 +145,12 @@ public class DistanceTrackController : MonoBehaviour
             // Debug.Log("Time: " + timer + " seconds. distance: " + percentageDistance + "%");
 
         }
-        Debug.Log("Loop Tracking Ended.");
+        // Debug.Log("Loop Tracking Ended.");
         if(game_lap > 2) { game_lap = 2; }
         // for player ends game without reach 2 lap(already played for 8 minutes).
         percentageDistance = (100 * currDistance / (DistancePerLap * 2));
         if ( percentageDistance >= 93) { percentageDistance = 100; }
 
-        Debug.Log("Adding last data.");
         // add player's data to List
         addData(
             timer,
@@ -156,24 +158,19 @@ public class DistanceTrackController : MonoBehaviour
             (int)carController.currentSpeed,
             brakeAmount,
             map_crashed,
-            trafficCirclePassed,
-            0,
             overturnedTimes
             );
-
-        Debug.Log("Data creating.");
         // After Game end, start writing .csv file.
         csvWriter.WriteToCSV(dataToExport);
 
         // end game.
-        // gameManager.
+        SceneManager.LoadScene(1);
     }
-    public void enableTracking()
-    {
-        tracking = true;
-        if(playerMesh != null) { 
-            StartCoroutine(performTracking());
-        }
+    public void enableTracking() { if(playerMesh != null) { StartCoroutine(performTracking()); } }
+
+    void updateGameUI() {
+        labText.GetComponent<TextMeshProUGUI>().text = "LAB " + game_lap;
+        sectorText.GetComponent<TextMeshProUGUI>().text = "SECTOR " + currSector;
     }
 
     void addData(
@@ -182,9 +179,22 @@ public class DistanceTrackController : MonoBehaviour
         int currentSpeed, 
         int brake_count,
         int mapCrash,
-        int roundabout_passed,
-        int crosswalk_passed,
         int overturned_times) {
+
+        // Row at Roundabout and Crosswalk in the new lap, They should not be duplicated.
+        if (game_lap == 2) { 
+            if(0 < currentRoundabout && currentRoundabout < 6) { currentRoundabout += 5; }
+            if(0 < crosswalkPassed && crosswalkPassed < 4) { crosswalkPassed += 3; }
+        }
+
+        // Row at the finished game, Player shouldn't stay in Roundabout or Crosswalk
+        if(distance == 100) {
+            currentRoundabout = 0;
+            crosswalkPassed = 0;
+            game_lap = 2;
+            currSector = 3;
+        }
+
         dataToExport.Add(new string[] {
             seconds.ToString(),
             distance.ToString(),
@@ -196,9 +206,9 @@ public class DistanceTrackController : MonoBehaviour
 
             mapCrash.ToString(),
             crash_count.ToString(),
-            roundabout_passed.ToString(),
+            currentRoundabout.ToString(),
             
-            crosswalk_passed.ToString(),
+            crosswalkPassed.ToString(),
             overturned_times.ToString()
         });
     }
@@ -211,14 +221,15 @@ public class DistanceTrackController : MonoBehaviour
             currTracker++;
             game_lap++;
         }
-        Debug.Log("current tracker: " + currTracker + ", and current lap is: " + game_lap +
-            "\npassed sector: " + currSector);
+        //Debug.Log("current tracker: " + currTracker + ", and current lap is: " + game_lap + "\npassed sector: " + currSector);
+        updateGameUI();
     }
 
     public void changeSector(int index)
     {
         currSector = index;
-        Debug.Log("Sector " + currSector);
+        // Debug.Log("Sector " + currSector);
+        updateGameUI();
     }
 
     public void crashCounting() { crash_count++; }
@@ -227,9 +238,25 @@ public class DistanceTrackController : MonoBehaviour
 
     public void MapCrashed() { map_crashed++; }
 
-    public void trafficCirclePassing() { trafficCirclePassed++; }
+    public void trafficCirclePassing(int id) {
+        if (0 < id && game_lap == 1) {
+            currentRoundabout = id;
+        } else if (0 < id && game_lap == 2) {
+            currentRoundabout = id + 5;
+        } else {
+            currentRoundabout = 0;
+        }
+    }
 
-    public void CrosswalkPassing() { CrosswalkPassed++; }
+    public void CrosswalkPassing(int id) {
+        if (0 < id && game_lap == 1) {
+            crosswalkPassed = id;
+        } else if (0 < id && game_lap == 2) {
+            crosswalkPassed = id + 3;
+        } else {
+            crosswalkPassed = 0;
+        }
+    }
 
     public void overturnedChecking() { overturnedTimes++; }
 }

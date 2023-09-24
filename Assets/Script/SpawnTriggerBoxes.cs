@@ -17,6 +17,15 @@ public class SpawnTriggerBoxes : MonoBehaviour
             {
                 GameObject newTriggerBox = Instantiate(triggerBoxes[i], TriggerPos[i].position, TriggerPos[i].rotation);
             }
+
+            StartCoroutine(ExampleCoroutine());
         }
+
+    }
+
+    IEnumerator ExampleCoroutine()
+    {
+        yield return new WaitForSeconds(10f);
+        Destroy(gameObject);
     }
 }
