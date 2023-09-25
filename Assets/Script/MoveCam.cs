@@ -11,14 +11,15 @@ public class MoveCam : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        VideoCaptureCtrl.instance.StartCapture();
-        if (objectToMove != null)
-        {
-            objectToMove.transform.position = targetTransform.position;
-            objectToMove.transform.rotation = targetTransform.rotation;
-        }
+        if(other.CompareTag("Player")) {
+            VideoCaptureCtrl.instance.StartCapture();
+            if (objectToMove != null) {
+                objectToMove.transform.position = targetTransform.position;
+                objectToMove.transform.rotation = targetTransform.rotation;
+            }
 
-        StartCoroutine(ExampleCoroutine());
+            StartCoroutine(ExampleCoroutine());
+        }
     }
 
     IEnumerator ExampleCoroutine()

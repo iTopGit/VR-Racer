@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
 
     private Button button;
-    private GameManager gameManager;
+    GameManager gameManager;
+    EndingSceneManager backManager;
 
     private int select = -1;
 
@@ -16,40 +18,30 @@ public class MenuButton : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("sceneManager").GetComponent<GameManager>();
+        backManager = GameObject.FindGameObjectWithTag("sceneManager").GetComponent<EndingSceneManager>();
         button.onClick.AddListener(selectButton);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (false)
-        {
-            gameManager.showScore();
-        }
     }
 
     void selectButton()
     {
-        string buttonName = button.gameObject.name;
-        Debug.Log(buttonName + " was clicked");
+        if(gameManager != null || backManager != null) {
+            string buttonName = button.gameObject.name;
+            // Debug.Log(buttonName + " was clicked");
 
-        if (buttonName == "Start Button")
-        {
-            gameManager.startGame();
-        } else if (buttonName == "Tutorial Button") 
-        {
-            gameManager.tutorial();
-            //EventSystem.current.SetSelectedGameObject(backButton.gameObject);
-        } else if (buttonName == "Back Button")
-        {
-            gameManager.backToTitle();
+            if (buttonName == "Start Button") {
+                gameManager.startGame();
+            } else if (buttonName == "Tutorial Button") {
+                gameManager.tutorial();
+            } else if (buttonName == "Back Button") {
+                if(gameManager != null) {
+                    gameManager.backToTitle();
+                } else if (backManager != null) {
+                    backManager.backToTitle();
+                }
+            } else if (buttonName == "Exit Button") {
+                gameManager.exitGame();
+            }
         }
-        else if (buttonName == "Exit Button")
-        {
-            gameManager.exitGame();
-        }
-
-        
     }
 }

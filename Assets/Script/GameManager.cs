@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
+    public InputActionProperty showButton;
+    public GameObject menuPanel;
+
     public GameObject titleScreen;
     public GameObject tutorialScreen;
     public GameObject scoreScreen;
+
 
     public bool isPlaying;
 
     private int score;
 
     public Button titleButton;
-    public Button backButton;
-    public Button toTitleButton;
+    public Button toTutorialButton;
+    // public Button toTitleButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +33,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(showButton.action.WasPressedThisFrame())
+        {
+            menuPanel.SetActive(true);
+        }
     }
 
     public void TogglePlaying()
@@ -77,14 +85,18 @@ public class GameManager : MonoBehaviour
         isPlaying = true;
         score = 0;
         UpdateScore(0);
+        SceneManager.LoadScene(1);
     }
 
+    // Button within Main Menu, Press Button to go to tutorial screen.
     public void tutorial() 
     {
         titleScreen.gameObject.SetActive(false);
         tutorialScreen.gameObject.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(backButton.gameObject);
+        EventSystem.current.SetSelectedGameObject(toTutorialButton.gameObject);
     }
+
+    // Button within, Press Button to Back to Main Menu.
     public void backToTitle()
     {
         tutorialScreen.gameObject.SetActive(false);
@@ -92,12 +104,9 @@ public class GameManager : MonoBehaviour
         titleScreen.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(titleButton.gameObject);
     }
-    public void exitGame() { }
 
-    public void showScore()
-    {
-        scoreScreen.gameObject.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(toTitleButton.gameObject);
-        isPlaying = false;
+    // Button within Main Menu.
+    public void exitGame() {
+        Application.Quit();
     }
 }

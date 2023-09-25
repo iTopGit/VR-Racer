@@ -164,7 +164,7 @@ public class DistanceTrackController : MonoBehaviour
         csvWriter.WriteToCSV(dataToExport);
 
         // end game.
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     public void enableTracking() { if(playerMesh != null) { StartCoroutine(performTracking()); } }
 

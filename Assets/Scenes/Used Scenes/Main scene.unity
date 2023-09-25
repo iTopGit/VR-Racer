@@ -6094,9 +6094,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  startOnAwake: 0
+  startOnAwake: 1
   captureTime: 1
-  quitAfterCapture: 0
+  quitAfterCapture: 1
   _videoCaptures:
   - {fileID: 796258175}
   - {fileID: 2027807079}
@@ -8443,7 +8443,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &617611954
 GameObject:
@@ -11464,20 +11464,20 @@ MonoBehaviour:
   format: 0
   stereo: 0
   stereoFormat: 1
-  frameSize: 4
+  frameSize: 2
   _cubemapSize: 1
   panoramaProjection: 0
   encodeQuality: 1
   _antiAliasing: 2
-  _targetFramerate: 4
+  _targetFramerate: 2
   isDedicated: 1
   captureGUI: 1
   mode: 0
-  customPath: 0
-  customPathFolder: D:\Pachara_directory\Recorded_video
+  customPath: 1
+  customPathFolder: D:\Pachara_directory\VR_testrepo\Recordings
   streamingAddress: 
   interPupillaryDistance: 0.0635
-  offlineRender: 1
+  offlineRender: 0
 --- !u!1 &810683176
 GameObject:
   m_ObjectHideFlags: 0
@@ -13812,7 +13812,7 @@ Transform:
   - {fileID: 1525004847}
   - {fileID: 1720002201}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1016695547
 GameObject:
@@ -17123,7 +17123,7 @@ Transform:
   - {fileID: 1516465388}
   - {fileID: 911843083}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1297841360
 GameObject:
@@ -19037,7 +19037,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1424924750 stripped
 Transform:
@@ -26595,13 +26595,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6832495830472572265, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
         type: 3}
+      propertyPath: frameSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832495830472572265, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+        type: 3}
       propertyPath: customPath
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832495830472572265, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+        type: 3}
+      propertyPath: isDedicated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832495830472572265, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+        type: 3}
+      propertyPath: _antiAliasing
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832495830472572265, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+        type: 3}
+      propertyPath: _targetFramerate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6832495830472572265, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
         type: 3}
       propertyPath: customPathFolder
-      value: D:\Pachara_directory\Recorded_video
+      value: D:\Pachara_directory\VR_testrepo\Recordings
       objectReference: {fileID: 0}
     - target: {fileID: 6832495830472572266, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
         type: 3}
@@ -45079,7 +45099,7 @@ RectTransform:
   - {fileID: 1028083901638376726}
   - {fileID: 1028083902702145151}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -82159,7 +82179,7 @@ Transform:
   m_Children:
   - {fileID: 3697481146476007654}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &7128629307214555637
 MeshRenderer:
@@ -82378,7 +82398,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7140218172648528768
 MeshFilter:

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Recorder;
 using RockVR.Video;
 public class AttachCamera : MonoBehaviour
 {

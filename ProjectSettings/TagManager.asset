@@ -25,6 +25,12 @@ TagManager:
   - TriggerBox08
   - TriggerBox09
   - TriggerBox10
+  - light
+  - Flashlight
+  - Left Hand
+  - Right Hand
+  - PlayerHitbox
+  - sceneManager
   layers:
   - Default
   - TransparentFX

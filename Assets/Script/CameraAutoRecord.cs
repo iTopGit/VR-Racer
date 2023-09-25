@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Recorder;
 using System.Diagnostics;
 public class CameraAutoRecord : MonoBehaviour
 {

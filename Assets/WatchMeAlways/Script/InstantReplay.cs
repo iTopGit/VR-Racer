@@ -180,7 +180,7 @@ namespace WatchMeAlways
             if (newConfig != null)
             {
                 config_.CopyFrom(newConfig);
-                config_.Save();
+                // config_.Save();
 
                 // if (IsRecording())
                 {
