@@ -309,7 +309,7 @@ public class DistanceTrackController : MonoBehaviour {
     {
         if (0 < id && game_lap == 1) {
             entry_Roundabout = id;
-        } else if (0 < id && game_lap == 2) {
+        } else if (0 < id && id + 5 < 11 && game_lap == 2) {
             entry_Roundabout = id + 5;
         } else {
             entry_Roundabout = 0;

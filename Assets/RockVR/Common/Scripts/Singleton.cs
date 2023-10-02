@@ -48,7 +48,7 @@ namespace RockVR.Common
                             _instance = singleton.AddComponent<T>();
                             singleton.name = typeof(T).Name;
 
-                            DontDestroyOnLoad(singleton);
+                            // DontDestroyOnLoad(singleton);
 
                             Debug.Log("[Singleton] An instance of " + typeof(T) +
                                 " is needed in the scene, so '" + singleton +
@@ -74,7 +74,7 @@ namespace RockVR.Common
             if (_instance == null)
             {
                 _instance = this as T;
-                DontDestroyOnLoad(gameObject);
+                // DontDestroyOnLoad(gameObject);
             }
             else if (_instance != this)
             {
