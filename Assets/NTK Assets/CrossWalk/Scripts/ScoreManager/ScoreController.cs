@@ -31,7 +31,7 @@ public class ScoreController : MonoBehaviour
     {
         if (!waitHuman) 
         {
-            Debug.Log("Not Stop : " + "Score " + score + " to " + (score-50));
+            // Debug.Log("Not Stop : " + "Score " + score + " to " + (score-50));
             updateScore(-50);
         } 
     }
@@ -42,11 +42,9 @@ public class ScoreController : MonoBehaviour
         waitHuman = true;
         if (crash)
         {
-            Debug.Log("Car Crash : " + "Score " + score + " to " + (score - 100));
             updateScore(-100);
         } else
         {
-            Debug.Log("Sucess : " + "Score " + score + " to " + (score + 100));
             updateScore(100);
         }
     }
@@ -55,6 +53,7 @@ public class ScoreController : MonoBehaviour
     {
         if (other.CompareTag("NPC"))
         {
+            crash = other.GetComponent<HumanController>().dead;
             humanPassed();
         }
     }

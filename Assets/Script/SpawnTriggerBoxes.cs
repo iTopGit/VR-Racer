@@ -11,21 +11,24 @@ public class SpawnTriggerBoxes : MonoBehaviour
     {
         if (other.CompareTag("Player"))  // Use CompareTag for better performance
         {
-            Debug.Log("Spawn a New trigger Box");
-
-            for (int i = 0; i < triggerBoxes.Length; i++)
-            {
-                GameObject newTriggerBox = Instantiate(triggerBoxes[i], TriggerPos[i].position, TriggerPos[i].rotation);
+            for (int i = 0; i < triggerBoxes.Length; i++) {
+                if(i == 0) { moveInstance(i); } else { createInstance(i); }
             }
-
             StartCoroutine(ExampleCoroutine());
         }
-
     }
 
-    IEnumerator ExampleCoroutine()
-    {
+    IEnumerator ExampleCoroutine() {
         yield return new WaitForSeconds(10f);
         Destroy(gameObject);
+    }
+
+    void createInstance(int index) {
+        Instantiate(triggerBoxes[index], TriggerPos[index].position, TriggerPos[index].rotation);
+    }
+
+    void moveInstance(int index) {
+        triggerBoxes[index].transform.position = TriggerPos[index].transform.position;
+        triggerBoxes[index].transform.rotation = TriggerPos[index].transform.rotation;
     }
 }

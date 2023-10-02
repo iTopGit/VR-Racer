@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
@@ -287,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
@@ -366,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55c24f911e087ef46a2539ed8ea29825, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 55c24f911e087ef46a2539ed8ea29825, type: 3}
       propertyPath: m_RootOrder
@@ -468,20 +468,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7278689320618242801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7654124373325809240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df41673872f236c4284d0ee51acbe62f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerName: TriggerBox04
-  Barrier: {fileID: 0}
 --- !u!64 &5407679795494683106
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -496,6 +482,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 55c24f911e087ef46a2539ed8ea29825, type: 3}
+--- !u!114 &7278689320618242801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7654124373325809240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df41673872f236c4284d0ee51acbe62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerName: TriggerBox04
+  Barrier: {fileID: 0}
+  isCrashed: 0
 --- !u!1001 &8489077184281033320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -566,7 +567,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}

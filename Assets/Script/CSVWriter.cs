@@ -10,7 +10,7 @@ public class CSVWriter : MonoBehaviour
 
     public void WriteToCSV(List<string[]> rowData)
     {
-        string filePath = Path.Combine(Application.dataPath, fileName);
+        string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
 
         using (StreamWriter writer = new StreamWriter(filePath))
         {

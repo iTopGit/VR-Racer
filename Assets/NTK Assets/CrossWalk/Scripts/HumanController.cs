@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class HumanController : MonoBehaviour
 {
-    float speed = 0;
-    Animator humanAnimation;
+    float speed;
+    private Animator humanAnimation;
+    public bool dead;
     // Start is called before the first frame update
     void Start()
     {
         speed = 0;
-        humanAnimation = this.gameObject.GetComponent<Animator>();
+        dead = false;
+        humanAnimation = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,7 +23,6 @@ public class HumanController : MonoBehaviour
 
     public void setSpeed(float newSpeed)
     {
-        Debug.Log("Function Called");
         speed = newSpeed;
         if (speed > 0) 
         {
@@ -29,4 +30,11 @@ public class HumanController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            dead = true;
+        }
+    }
 }

@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Path: {fileID: 4158688601049283020}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 5
+  m_Speed: 12
   m_Position: 0
 --- !u!1001 &4158688600141257712
 PrefabInstance:
@@ -171,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 08bf92dc092ddeb43ae6204944de25e0, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 08bf92dc092ddeb43ae6204944de25e0, type: 3}
       propertyPath: m_RootOrder
@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerName: TriggerBox07
   Barrier: {fileID: 0}
+  isCrashed: 0
 --- !u!4 &4158688600141382000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 08bf92dc092ddeb43ae6204944de25e0,
@@ -349,7 +350,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
@@ -428,7 +429,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
@@ -507,7 +508,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
@@ -586,7 +587,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}

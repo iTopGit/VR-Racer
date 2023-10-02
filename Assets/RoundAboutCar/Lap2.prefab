@@ -110,8 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede9bc0b50af6154e878a64c5fb46b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToMove: {fileID: 0}
-  targetTransform: {fileID: 0}
+  objectToMove: {fileID: 6832495830472572278, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+    type: 3}
+  targetTransform: {fileID: 6657856046195564051}
+  isStart: 0
 --- !u!1 &2580182353636072123
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,8 +257,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2580182353665743329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 59.2199, y: 77.81203, z: 218.01}
-  m_LocalScale: {x: 7.0555, y: 0.47994, z: 0.47099}
+  m_LocalPosition: {x: 59.219894, y: 77.81203, z: 218.01}
+  m_LocalScale: {x: 7.0555, y: 0.47994, z: 0.4709899}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2580182354151134857}
@@ -337,8 +339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede9bc0b50af6154e878a64c5fb46b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToMove: {fileID: 0}
-  targetTransform: {fileID: 0}
+  objectToMove: {fileID: 6832495830472572278, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+    type: 3}
+  targetTransform: {fileID: 2580182353665743330}
+  isStart: 0
 --- !u!1 &2580182353899292490
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,8 +724,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede9bc0b50af6154e878a64c5fb46b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToMove: {fileID: 0}
-  targetTransform: {fileID: 0}
+  objectToMove: {fileID: 6832495830472572278, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+    type: 3}
+  targetTransform: {fileID: 2580182354301973641}
+  isStart: 0
 --- !u!1 &2580182354308681925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,8 +1068,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede9bc0b50af6154e878a64c5fb46b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToMove: {fileID: 0}
-  targetTransform: {fileID: 0}
+  objectToMove: {fileID: 6832495830472572278, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+    type: 3}
+  targetTransform: {fileID: 2580182354491069450}
+  isStart: 0
 --- !u!1 &2580182354510686636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,5 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede9bc0b50af6154e878a64c5fb46b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToMove: {fileID: 0}
-  targetTransform: {fileID: 0}
+  objectToMove: {fileID: 6832495830472572278, guid: 20fc5c73960f80947827dd8b0a0f6c0f,
+    type: 3}
+  targetTransform: {fileID: 2580182354510686637}
+  isStart: 0

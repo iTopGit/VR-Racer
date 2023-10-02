@@ -9,10 +9,13 @@ public class MoveCam : MonoBehaviour
     public GameObject objectToMove;
     public Transform targetTransform;
 
+    public bool isStart = false;
+
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player")) {
-            VideoCaptureCtrl.instance.StartCapture();
+        if(other.CompareTag("Player"))
+        {
+            
             if (objectToMove != null) {
                 objectToMove.transform.position = targetTransform.position;
                 objectToMove.transform.rotation = targetTransform.rotation;
@@ -25,6 +28,6 @@ public class MoveCam : MonoBehaviour
     IEnumerator ExampleCoroutine()
     {
         yield return new WaitForSeconds(10f);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

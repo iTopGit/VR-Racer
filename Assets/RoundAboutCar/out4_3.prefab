@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Path: {fileID: 2100691159364944865}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 5
+  m_Speed: 7
   m_Position: 0
 --- !u!1 &2100691159364944864
 GameObject:
@@ -226,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 818652554129183888, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2991142792464978341, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}
@@ -305,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 818652554129183888, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2991142792464978341, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}
@@ -384,7 +384,7 @@ PrefabInstance:
     - target: {fileID: 818652554129183888, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2991142792464978341, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}
@@ -406,7 +406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c571870a6f431e94abb4c1a1a6961835, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c571870a6f431e94abb4c1a1a6961835, type: 3}
       propertyPath: m_RootOrder
@@ -514,6 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerName: TriggerBox09
   Barrier: {fileID: 0}
+  isCrashed: 0
 --- !u!1001 &2100691160045498496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -584,7 +585,7 @@ PrefabInstance:
     - target: {fileID: 818652554129183888, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2991142792464978341, guid: f0e84c444de909940ad9c1baa7244c6f,
         type: 3}

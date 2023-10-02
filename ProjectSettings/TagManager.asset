@@ -39,11 +39,11 @@ TagManager:
   - Water
   - UI
   - NPC
-  - 
-  - 
+  - MapCollider
+  - NPCcar
   - 
   - Player
-  - 
+  - NPC
   - 
   - 
   - 

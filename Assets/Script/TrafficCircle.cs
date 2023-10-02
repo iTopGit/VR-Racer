@@ -32,7 +32,7 @@ public class TrafficCircle : MonoBehaviour
 
     IEnumerator wait_check_count()
     {
-        yield return new WaitForSeconds(75);
+        yield return new WaitForSeconds(45);
         allowCount = true;
     }
 

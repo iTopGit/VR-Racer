@@ -9,16 +9,16 @@ public class CrossWalkManager : MonoBehaviour
     [SerializeField] public GameObject spawnPoint;
 
     DistanceTrackController gameTracker;
+    CarController carController;
     GameObject newHuman;
     HumanController humanController;
     bool move = false;
     bool allowCheck = true;
 
-    float carSpeed;
-
     private void Start()
     {
         gameTracker = GameObject.FindGameObjectWithTag("distanceTrack").GetComponent<DistanceTrackController>();
+        carController = GameObject.FindGameObjectWithTag("Player").GetComponent<CarController>();
     }
     void spawnHuman()
     {
@@ -29,30 +29,33 @@ public class CrossWalkManager : MonoBehaviour
         humanController = newHuman.GetComponent<HumanController>();
     }
 
-    void Update() { carSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<CarController>().currentSpeed; }
-    private void OnTriggerEnter(Collider other) { 
-        if (other.gameObject.tag == "Player" && allowCheck) { 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && allowCheck)
+        {
             spawnHuman();
             gameTracker.CrosswalkPassing(objectId);
             allowCheck = false;
-        } 
-    }
-
-    private void OnTriggerStay(Collider other) {
-        if (carSpeed < 5 && !move && (humanController != null) && other.gameObject.tag == "Player") {
-            Debug.Log("On Trigger Stay.");
-            move = true;
-            humanController.setSpeed(4f);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            if(!move)
+    private void OnTriggerStay(Collider other)
+    {
+        if (carController.currentSpeed < 5 && !move && (humanController != null) && other.gameObject.tag == "Player")
+        {
+            move = true;
+            humanController.setSpeed(4);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (!move)
             {
-                Debug.Log("On Trigger Exit.");
                 move = true;
-                humanController.setSpeed(4f);
+                humanController.setSpeed(4);
             }
             gameTracker.CrosswalkPassing(0);
             StartCoroutine(resetChecker());

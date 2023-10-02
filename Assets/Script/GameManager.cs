@@ -27,15 +27,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Scene 2: " + UserContainer.email);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(showButton.action.WasPressedThisFrame())
+        if (showButton.action.WasPressedThisFrame())
         {
             menuPanel.SetActive(true);
+        }
+
+        if(Input.GetKey("l"))
+        {
+            SceneManager.LoadScene(2);
         }
     }
 
@@ -85,7 +90,7 @@ public class GameManager : MonoBehaviour
         isPlaying = true;
         score = 0;
         UpdateScore(0);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     // Button within Main Menu, Press Button to go to tutorial screen.

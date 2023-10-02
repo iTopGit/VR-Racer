@@ -84,6 +84,8 @@ namespace RockVR.Video
     /// </summary>
     public class VideoCapture : VideoCaptureBase
     {
+        [SerializeField] private int cam_id = 0;
+
         /// <summary>
         /// Get or set the current status.
         /// </summary>
@@ -116,6 +118,7 @@ namespace RockVR.Video
         /// </summary>
         private int capturedFrameCount;
         private int encodedFrameCount;
+        
         /// <summary>
         /// Reference to native lib API.
         /// </summary>
@@ -206,7 +209,14 @@ namespace RockVR.Video
             }
             if (mode == ModeType.LOCAL)
             {
-                filePath = PathConfig.SaveFolder + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+                if(gameObject.tag == "ThirdPersonCamera") {
+                    cam_id = 1;
+                } else { 
+                    cam_id = 2; 
+                }
+                // filePath = PathConfig.SaveFolder + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+                // filePath = Application.streamingAssetsPath + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+                filePath = Path.Combine(Application.streamingAssetsPath, StringUtils.GetMp4FileName(cam_id + "_" +StringUtils.GetRandomString(5)));
             }
             // Create a RenderTexture with desired frame size for dedicated
             // camera capture to store pixels in GPU.
@@ -359,6 +369,13 @@ namespace RockVR.Video
             }
             else
             {
+                /*
+                Debug.Log(frameWidth + "\n" +
+                    frameHeight + "\n" +
+                    targetFramerate +"\n" +
+                    proj + "\n" +
+                    filePath + "\n" + PathConfig.ffmpegPath);
+                */
                 libAPI = VideoCaptureLib_Get(
                     frameWidth,
                     frameHeight,

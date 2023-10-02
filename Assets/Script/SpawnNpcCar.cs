@@ -23,7 +23,7 @@ public class SpawnNpcCar : MonoBehaviour
     {
         if (other.CompareTag("Player"))  // Use CompareTag for better performance
         {
-            Debug.Log("Player entered the checkpoint");
+            // Debug.Log("Player entered the checkpoint");
             SpawnNPCcar();  // Call the method to spawn the NPCcar
         }
     }
@@ -39,11 +39,13 @@ public class SpawnNpcCar : MonoBehaviour
         {
             StartCoroutine(DestroyNPCcarAtEndOfPath(dollyCart, newNPCcar));
         }
+        /*
         else
         {
             Debug.Log("car is null");
             Debug.LogWarning("CinemachineDollyCart component not found on the NPCcar.");
         }
+         */
     }
 
     IEnumerator DestroyNPCcarAtEndOfPath(Cinemachine.CinemachineDollyCart dollyCart, GameObject npcCar)
@@ -54,7 +56,7 @@ public class SpawnNpcCar : MonoBehaviour
         {
             if (isCrashed) {
                 dollyCart.m_Speed = 0f;
-                Debug.Log(npcCar.name);
+                // Debug.Log(npcCar.name);
                 isCrashed = false;
                 controller.GetComponent<DistanceTrackController>().crashCounting();
                 
@@ -74,6 +76,6 @@ public class SpawnNpcCar : MonoBehaviour
 
     void deleteEvent(GameObject npcCar) {
         Destroy(npcCar.gameObject);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

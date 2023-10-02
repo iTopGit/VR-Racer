@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Path: {fileID: 567231219830772110}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 5
+  m_Speed: 7
   m_Position: 0
 --- !u!1 &2453850474355292219
 GameObject:
@@ -234,7 +234,7 @@ PrefabInstance:
     - target: {fileID: 3705246279528692023, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4847710973022200983, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}
@@ -313,7 +313,7 @@ PrefabInstance:
     - target: {fileID: 3705246279528692023, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4847710973022200983, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}
@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 3705246279528692023, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4847710973022200983, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}
@@ -414,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bd1b5e78f2fbb2e409e21b1a12d8668c, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bd1b5e78f2fbb2e409e21b1a12d8668c, type: 3}
       propertyPath: m_RootOrder
@@ -522,6 +522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerName: TriggerBox10
   Barrier: {fileID: 0}
+  isCrashed: 0
 --- !u!1001 &8390979140890047607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -592,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 3705246279528692023, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4847710973022200983, guid: 8f02a1948e5867e488f2a1e15f6f478f,
         type: 3}

@@ -22,6 +22,7 @@ public class Cam1Record : MonoBehaviour
             GameObject camera = Instantiate(cameraPrefab, CamPos.position, CamPos.rotation);
             Debug.Log("Player Start Record Cam1");
             VideoCaptureCtrl.instance.StartCapture();
+            Destroy(this.gameObject);
         }
     }
 }

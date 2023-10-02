@@ -1,33 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class InterfaceManager : MonoBehaviour
 {
-    public GameObject titleScreen, tutorialScreen;
-    public Button startButton, backButton;
+    public GameObject titleScreen, tutorialScreen, scoreScreen;
+    public Button startButton, backButton, startAgainButton;
 
-    public bool signin = true;
-    public bool interfaceActivated = false;
+    string username;
+    public TextMeshProUGUI usernameText;
+
     // Start is called before the first frame update
     void Start() {
-        if (!signin)
+        // Check if XR (VR/AR) is supported
+        if (XRSettings.isDeviceActive)
         {
-            titleScreen.gameObject.SetActive(false);
-            Application.OpenURL("https://cmu.to/VRacer");
+            // Disable head tracking
+            XRSettings.enabled = false;
         }
+
+        //LoginManager LM = GameObject.Find("Login Manager").GetComponent<LoginManager>();
+        username = UserContainer.username;
+        Debug.Log(username);
+        usernameText.text = "Username : " + username;
+
     }
     // Update is called once per frame
     void Update() { 
-        if (signin && !interfaceActivated)
-        {
-            titleScreen.gameObject.SetActive(true);
-            interfaceActivated = true;
-        }
+
     }
 
     public void setStart() 
@@ -38,6 +44,7 @@ public class InterfaceManager : MonoBehaviour
     {
         // Swap Panel
         titleScreen.gameObject.SetActive(false);
+        scoreScreen.gameObject.SetActive(false);
         tutorialScreen.gameObject.SetActive(true);
         // Back Button Selected
         EventSystem.current.SetSelectedGameObject(backButton.gameObject);
@@ -49,5 +56,13 @@ public class InterfaceManager : MonoBehaviour
         tutorialScreen.gameObject.SetActive(false);
         // Start Button Selected
         EventSystem.current.SetSelectedGameObject(startButton.gameObject);
+    }
+    public void setScore()
+    {
+        // Swap Panel
+        tutorialScreen.gameObject.SetActive(false);
+        scoreScreen.gameObject.SetActive(true);
+        // Start Button Selected
+        EventSystem.current.SetSelectedGameObject(startAgainButton.gameObject);
     }
 }

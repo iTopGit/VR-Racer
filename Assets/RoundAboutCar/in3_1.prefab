@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Path: {fileID: 5462053377501578996}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 5
+  m_Speed: 7
   m_Position: 0
 --- !u!1 &5462053378445347558
 GameObject:
@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
@@ -299,7 +299,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
@@ -321,7 +321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 37dd4fa108c0cb7479858e8e699febe7, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 37dd4fa108c0cb7479858e8e699febe7, type: 3}
       propertyPath: m_RootOrder
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerName: TriggerBox06
   Barrier: {fileID: 0}
+  isCrashed: 0
 --- !u!1001 &5462053378781983265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,7 +500,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
@@ -578,7 +579,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 07793dcaace3aea4180ca12bc523250e,
         type: 3}

@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3045711906536342398}
   - component: {fileID: 3045711906536342397}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: DollyTrack14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3045711908132351281}
   - component: {fileID: 3045711908132351280}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: DollyCart13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
@@ -289,7 +289,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
@@ -368,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
@@ -390,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 55c24f911e087ef46a2539ed8ea29825, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 55c24f911e087ef46a2539ed8ea29825, type: 3}
       propertyPath: m_RootOrder
@@ -492,6 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerName: TriggerBox08
   Barrier: {fileID: 0}
+  isCrashed: 0
 --- !u!4 &3045711907575335147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 55c24f911e087ef46a2539ed8ea29825,
@@ -568,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 420573092798429465, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3581263382545239771, guid: 13c441671b9f75f4e93fd11d33f97ec7,
         type: 3}
