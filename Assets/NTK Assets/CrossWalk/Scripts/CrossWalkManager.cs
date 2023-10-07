@@ -14,6 +14,7 @@ public class CrossWalkManager : MonoBehaviour
     HumanController humanController;
     bool move = false;
     bool allowCheck = true;
+    int brakeSpeed = 0;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class CrossWalkManager : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (carController.currentSpeed < 5 && !move && (humanController != null) && other.gameObject.tag == "Player")
+        if (carController.currentSpeed <= brakeSpeed && !move && (humanController != null) && other.gameObject.tag == "Player")
         {
             move = true;
             humanController.setSpeed(4);

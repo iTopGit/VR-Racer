@@ -1,8 +1,8 @@
 {
-    "lgn_url":"http://172.104.189.115:56733/api/logingame",
+    "lgn_url":"http://172.104.189.115/api/logingame",
     "lgn_key":"Q9Vsm9IiTPDPxILyPwQi",
-    "csv_url":"http://172.104.189.115:56733/api/score",
+    "csv_url":"http://172.104.189.115/api/score",
     "csv_key":"Zo6xmO3hSUwh9VoofVWu",
-    "vid_url":"http://172.104.189.115:56733/api/video",
+    "vid_url":"http://172.104.189.115/api/video",
     "vid_key":"hSV4P6volOE6e0CvWyQE"
 }

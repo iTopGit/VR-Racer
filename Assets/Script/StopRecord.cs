@@ -9,7 +9,7 @@ public class StopRecord : MonoBehaviour
         if (other.CompareTag("Player"))  // Use CompareTag for better performance
         {
             Debug.Log("Player Stop Record");
-            VideoCaptureCtrl.instance.StopCapture();
+            // VideoCaptureCtrl.instance.StopCapture();
         }
     }
 }

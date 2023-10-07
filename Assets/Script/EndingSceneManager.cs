@@ -15,6 +15,7 @@ public class EndingSceneManager : MonoBehaviour {
     public GameObject avg_speed;
     public GameObject old_avg_speed;
     public GameObject loadingText;
+    public GameObject toMenuButton;
 
     // public GameObject loadingText;
 
@@ -30,8 +31,7 @@ public class EndingSceneManager : MonoBehaviour {
         if (UserContainer.email == null) { UserContainer.email = "vokox44702@utwoko.com"; }
 
         resendButton.onClick.AddListener(resendFile);
-
-        sendFile();
+        StartCoroutine(initiating());
     }
 
     // Update is called once per frame
@@ -44,6 +44,11 @@ public class EndingSceneManager : MonoBehaviour {
         } 
     }
 
+    IEnumerator initiating()
+    {
+        yield return new WaitForSeconds(2.5f);
+        sendFile();
+    }
     void resendFile() { 
         sendFile();
         resendButton.gameObject.SetActive(false);
@@ -57,7 +62,9 @@ public class EndingSceneManager : MonoBehaviour {
 
     public void isLoaded(bool isComplete) {
         if (isComplete) {
-            loadingText.GetComponent<TextMeshProUGUI>().text = "Upload video complete."; 
+            loadingText.GetComponent<TextMeshProUGUI>().text = "Upload video complete.";
+            toMenuButton.SetActive(true);
+            loadingText.SetActive(false);
         } else {
             loadingText.GetComponent<TextMeshProUGUI>().text = "Uploading File Failed,\nTry resend them again.";
             resendButton.gameObject.SetActive(true);

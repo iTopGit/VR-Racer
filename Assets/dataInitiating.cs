@@ -9,8 +9,8 @@ public class dataInitiating : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Script Initiated");
         DeleteFiles();
+        Debug.Log("Script Initiated");
         Destroy(gameObject);
     }
 

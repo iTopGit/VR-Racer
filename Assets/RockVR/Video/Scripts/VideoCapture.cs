@@ -761,7 +761,7 @@ namespace RockVR.Video
             this.audioCapture = audioCapture;
         }
         /// <summary>
-        /// Video/Audio mux function impl.
+        /// Video/Audio mux function impl.  
         /// Blocking function.
         /// </summary>
         public bool Muxing()

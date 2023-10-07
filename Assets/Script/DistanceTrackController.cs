@@ -109,6 +109,9 @@ public class DistanceTrackController : MonoBehaviour {
     {
         if(Input.GetKeyDown("l")) {
             // end game.
+            if (UserContainer.email == null) {
+                UserContainer.email = "vokox44702@utwoko.com";
+            }
             sendingData();
             SceneManager.LoadScene(3);
         } else if (Input.GetKeyDown("p")) {
@@ -187,6 +190,7 @@ public class DistanceTrackController : MonoBehaviour {
         csvWriter.WriteToCSV(dataToExport);
 
         // end game.
+        VideoCaptureCtrl.instance.StopCapture();
         sendingData();
         SceneManager.LoadScene(3);
 

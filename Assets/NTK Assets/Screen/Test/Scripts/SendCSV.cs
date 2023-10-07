@@ -17,7 +17,7 @@ public class SendCSV : MonoBehaviour
     private string email;
 
     // mocked up value
-    private string name_state = "roundabout_test";
+    private string name_state = "roundabout_test_simple";
     private string level= "simple";
     private string car_roundabout = "10";
     private string car_inroad = "0";
@@ -49,13 +49,13 @@ public class SendCSV : MonoBehaviour
         apiKey = configData.csv_key;
         email = UserContainer.email;
 
-
         Debug.Log("check path of video:\n" + video1 + "\n" + video2);
         var client = new HttpClient();
         var request = new HttpRequestMessage(HttpMethod.Post, apiUrl);
         request.Headers.Add("api_key", apiKey);
         request.Headers.Add("Cookie", "Cookie_3=value");
         var content = new MultipartFormDataContent();
+        /*
         string stringJson = $"{{\"email\": \"{email}\", \"video1\": \"{video1}\", \"video2\": \"{video2}\"" +
             $", \"name_state\": \"{name_state}\"" +
             $", \"level\": \"{level}\"" +
@@ -65,6 +65,11 @@ public class SendCSV : MonoBehaviour
             $", \"weather\": \"{weather}\"" +
             $", \"lane_check\": \"{lane_check}\"" +
             $"}}";
+         */
+        string stringJson = $"{{\"email\": \"{email}\", \"video1\": \"{video1}\", \"video2\": \"{video2}\"" +
+            $", \"name_state\": \"{name_state}\"" +
+            $"}}";
+
         var json = new StringContent(stringJson, System.Text.Encoding.UTF8, "application/json");
         content.Add(json, "json", "jsonFile.json");
 
